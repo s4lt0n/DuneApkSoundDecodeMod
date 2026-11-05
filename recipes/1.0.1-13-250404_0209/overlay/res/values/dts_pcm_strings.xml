@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+  <string name="dts_pcm_dialog_title">DTS decoding</string>
+  <string name="dts_pcm_checkbox">Decode DTS tracks to PCM</string>
+  <string name="dts_pcm_done">Done</string>
+  <string name="dts_pcm_ui_error">Could not open DTS settings</string>
+  <string name="dts_pcm_save_error">Could not save DTS setting</string>
+</resources>

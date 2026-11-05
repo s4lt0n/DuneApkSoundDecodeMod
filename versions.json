@@ -1,0 +1,33 @@
+{
+  "schemaVersion": 1,
+  "current": "1.0.1-13-250404_0209:1",
+  "originals": [
+    {
+      "version": "1.0.1-13-250404_0209",
+      "versionCode": 13,
+      "package": "com.dunehd.app",
+      "file": "apks/original/dune.1.0.1-13-250404_0209.apk",
+      "sha256": "2996c6f298a90d1a59dc1851ae164af4c40c91c358afcec32fb9bb632f634a96"
+    }
+  ],
+  "mods": [
+    {
+      "id": "1.0.1-13-250404_0209:1",
+      "original": "1.0.1-13-250404_0209",
+      "revision": 1,
+      "versionName": "1.0.1-13-250404_0209-mod.1",
+      "versionCode": 16,
+      "package": "com.dunehd.pcm",
+      "recipe": "recipes/1.0.1-13-250404_0209",
+      "file": "apks/mod/dune.1.0.1-13-250404_0209-mod.1.apk",
+      "sha256": "270c0d58538ff731f0290b1a61d01a2d4978b414daf66bfbe7b30dfc9161e673"
+    }
+  ],
+  "signing": {
+    "keystore": "signing/mod-development.jks",
+    "passwordFile": "signing/password.txt",
+    "alias": "dune-pcmtest",
+    "certificateSha256": "a586551c11023cec930bdec423e75c479e5d4b8b385705c7e6d9b3005bb66172",
+    "publicDevelopmentKey": true
+  }
+}

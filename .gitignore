@@ -1,0 +1,11 @@
+.build/
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+*.idsig
+# The common development key in signing/ is deliberately NOT ignored.
+
+# Local APK inputs and build artifacts; keep directory placeholders.
+apks/**/*.apk
+signing/local/

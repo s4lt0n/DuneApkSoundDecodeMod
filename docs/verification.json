@@ -1,0 +1,72 @@
+{
+  "release": "1.0.1-13-250404_0209:1",
+  "original": "1.0.1-13-250404_0209",
+  "revision": 1,
+  "apk": "apks/mod/dune.1.0.1-13-250404_0209-mod.1.apk",
+  "sha256": "270c0d58538ff731f0290b1a61d01a2d4978b414daf66bfbe7b30dfc9161e673",
+  "package": "com.dunehd.pcm",
+  "versionName": "1.0.1-13-250404_0209-mod.1",
+  "versionCode": 16,
+  "certificateSha256": "a586551c11023cec930bdec423e75c479e5d4b8b385705c7e6d9b3005bb66172",
+  "publicDevelopmentKey": true,
+  "signatureAndAlignmentVerified": true,
+  "nativeShimBytes": 225,
+  "unchangedNativeLibraries": 149,
+  "updatedIconsAndBanner": 16,
+  "audioMenuSettings": [
+    "digital_sound_mode",
+    "hd_audio_bitstream",
+    "button_dts_pcm_settings",
+    "native_sample_rate",
+    "max_spdif_sample_rate",
+    "start_silence_for_audio_files"
+  ],
+  "changedEmbeddedDataFiles": 30,
+  "androidUiTested": false,
+  "devicePlaybackTested": false,
+  "staticChecks": "PASS",
+  "localChecks": {
+    "nativeAssemblyMatchesReference": true,
+    "nativeEmulation": [
+      {
+        "loadAddress": "0x0",
+        "originalRegistrationPreserved": true,
+        "newButtonRegistered": true,
+        "stackAndCalleeSavedRegistersPreserved": true,
+        "dialogActionArgumentsCorrect": true
+      },
+      {
+        "loadAddress": "0x10000000",
+        "originalRegistrationPreserved": true,
+        "newButtonRegistered": true,
+        "stackAndCalleeSavedRegistersPreserved": true,
+        "dialogActionArgumentsCorrect": true
+      },
+      {
+        "loadAddress": "0x30000000",
+        "originalRegistrationPreserved": true,
+        "newButtonRegistered": true,
+        "stackAndCalleeSavedRegistersPreserved": true,
+        "dialogActionArgumentsCorrect": true
+      },
+      {
+        "loadAddress": "0x60000000",
+        "originalRegistrationPreserved": true,
+        "newButtonRegistered": true,
+        "stackAndCalleeSavedRegistersPreserved": true,
+        "dialogActionArgumentsCorrect": true
+      }
+    ],
+    "dexPolicy": {
+      "method": "Executed actual DEX instructions in a small interpreter; java.io.File mapped to a temporary host directory, not Android runtime",
+      "masksPerState": 278,
+      "defaultOff": true,
+      "enabledAndDisabledMasks": true,
+      "DolbyBitsPreserved": true,
+      "persistsAcrossNewInterpreterInstances": true,
+      "idempotentSave": true,
+      "writeFailureAndDeleteFailureReported": true,
+      "AndroidUiRuntimeTested": false
+    }
+  }
+}

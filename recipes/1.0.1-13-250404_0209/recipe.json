@@ -1,0 +1,18 @@
+{
+  "originalSha256": "2996c6f298a90d1a59dc1851ae164af4c40c91c358afcec32fb9bb632f634a96",
+  "native": {
+    "path": "lib/armeabi-v7a/libduneshell.so",
+    "originalSha256": "61f5872cc1c2fc510fb763b720917fa59f7648edc686036a05e2348250c92f21",
+    "shim": "native/menu-shim.bin",
+    "shimSha256": "9e63e61715fb0a0d95de8693d6a61195cedfe5132478270572f820e3c622b4e7",
+    "hookAddress": 6007248,
+    "shimAddress": 14151544,
+    "paddingEnd": 14152864,
+    "originalCallTarget": 4397120,
+    "javaBridgeAddress": 572900,
+    "callbackOffset": 80
+  },
+  "sourcePackage": "com.dunehd.app",
+  "targetPackage": "com.dunehd.pcm",
+  "label": "DUNE DTS PCM MOD"
+}

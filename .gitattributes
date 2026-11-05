@@ -1,0 +1,11 @@
+* text=auto eol=lf
+*.py text eol=lf
+*.smali text eol=lf
+*.xml text eol=lf
+*.json text eol=lf
+*.s text eol=lf
+*.patch text eol=lf -whitespace
+*.png -text
+*.jks -text
+*.bin -text
+*.apk -text

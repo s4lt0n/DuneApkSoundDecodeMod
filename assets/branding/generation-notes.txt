@@ -1,0 +1,4 @@
+Generated with built-in image_gen (imagegen skill), using original APK raster assets as edit references.
+Icon request: Preserve white DUNE HD mark and navy-to-black tile; replace MEDIA CENTER with large bold white DTS → PCM; add a small bright orange MOD badge at upper right; transparent outer corners; no other text.
+Banner request: Preserve DUNE HD mark and navy-to-black gradient, landscape 16:9; replace MEDIA CENTER with one prominent line DTS → PCM MOD, MOD in an orange badge; no extra text.
+Final assets were resized with macOS sips into existing APK density variants. Adaptive foreground content is centered at 54dp inside 108dp, with a matching navy background, to keep text inside launcher masks.

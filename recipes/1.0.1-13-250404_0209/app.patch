@@ -1,0 +1,156 @@
+--- a/AndroidManifest.xml
++++ b/AndroidManifest.xml
+@@ -1,4 +1,4 @@
+-<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="31" android:compileSdkVersionCodename="12" android:installLocation="preferExternal" package="com.dunehd.app" platformBuildVersionCode="31" platformBuildVersionName="12">
++<?xml version="1.0" encoding="utf-8" standalone="no"?><manifest xmlns:android="http://schemas.android.com/apk/res/android" android:compileSdkVersion="31" android:compileSdkVersionCodename="12" android:installLocation="preferExternal" package="com.dunehd.pcm" platformBuildVersionCode="31" platformBuildVersionName="12">
+     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+     <uses-permission android:name="android.permission.MANAGE_EXTERNAL_STORAGE"/>
+     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+@@ -943,7 +943,7 @@
+             </intent-filter>
+             <meta-data android:name="android.accessibilityservice" android:resource="@xml/afr_service_config"/>
+         </service>
+-        <provider android:authorities="com.dunehd.app.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
++        <provider android:authorities="com.dunehd.pcm.fileprovider" android:exported="false" android:grantUriPermissions="true" android:name="androidx.core.content.FileProvider">
+             <meta-data android:name="android.support.FILE_PROVIDER_PATHS" android:resource="@xml/file_paths"/>
+         </provider>
+         <meta-data android:name="com.android.dynamic.apk.fused.modules" android:value="base"/>
+--- a/smali/com/dunehd/shell/RoConfig.smali
++++ b/smali/com/dunehd/shell/RoConfig.smali
+@@ -97,7 +97,7 @@
+ .method public static getPackageName()Ljava/lang/String;
+     .locals 1
+ 
+-    const-string v0, "com.dunehd.app"
++    const-string v0, "com.dunehd.pcm"
+ 
+     return-object v0
+ .end method
+--- a/smali/com/dunehd/shell/AndroidJavaUtils.smali
++++ b/smali/com/dunehd/shell/AndroidJavaUtils.smali
+@@ -3192,6 +3192,16 @@
+ .method public static startActivityExt(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;I)Z
+     .locals 5
+ 
++    const-string v0, "com.dunehd.pcm.DTS_SETTINGS"
++    invoke-virtual {v0, p0}, Ljava/lang/String;->equals(Ljava/lang/Object;)Z
++    move-result v0
++    if-eqz v0, :dts_pcm_original_start
++    sget-object v0, Lcom/dunehd/shell/AndroidJavaUtils;->mainActivity:Lcom/dunehd/shell/MainActivity;
++    invoke-static {v0}, Lcom/dunehd/shell/settings/DtsPcmSettings;->show(Landroid/app/Activity;)Z
++    move-result v0
++    return v0
++    :dts_pcm_original_start
++
+     const/4 v0, 0x6
+ 
+     new-array v0, v0, [Ljava/lang/Object;
+--- a/smali/com/dunehd/shell/internalplayer/VLCPlayerImpl.smali
++++ b/smali/com/dunehd/shell/internalplayer/VLCPlayerImpl.smali
+@@ -1242,6 +1242,13 @@
+     invoke-virtual {p0, v0, v1, v2}, Lorg/videolan/libvlc/MediaPlayer;->setIntVar(Ljava/lang/String;II)V
+ 
+     :goto_0
++    invoke-static {}, Lcom/dunehd/shell/settings/DtsPcmSettings;->isEnabled()Z
++    move-result v0
++    if-eqz v0, :dts_pcm_core_done
++    const-string v0, "dts-core-only"
++    const/4 v1, 0x0
++    invoke-virtual {p0, v0, v1, v2}, Lorg/videolan/libvlc/MediaPlayer;->setBooleanVar(Ljava/lang/String;ZI)V
++    :dts_pcm_core_done
+     iget v0, p1, Lcom/dunehd/shell/internalplayer/PlaybackParams;->avOffset:I
+ 
+     if-eqz v0, :cond_3
+@@ -4314,6 +4321,10 @@
+ 
+     move-result v0
+ 
++    invoke-static {v0}, Lcom/dunehd/shell/settings/DtsPcmSettings;->filterMask(I)I
++
++    move-result v0
++
+     return v0
+ 
+     :cond_0
+@@ -4372,6 +4383,10 @@
+ 
+     :cond_4
+     :goto_0
++    invoke-static {v1}, Lcom/dunehd/shell/settings/DtsPcmSettings;->filterMask(I)I
++
++    move-result v1
++
+     return v1
+ .end method
+ 
+--- a/smali/com/dunehd/shell/config/HDConfig.smali
++++ b/smali/com/dunehd/shell/config/HDConfig.smali
+@@ -48,7 +48,7 @@
+ 
+ .field public static final HD_APK:Z = true
+ 
+-.field public static final HD_APK_APP_ID:Ljava/lang/String; = "com.dunehd.app"
++.field public static final HD_APK_APP_ID:Ljava/lang/String; = "com.dunehd.pcm"
+ 
+ .field public static final HD_APK_FACTORY_MODE:Z = false
+ 
+--- a/res/values-ru/strings.xml
++++ b/res/values-ru/strings.xml
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="app_name">DUNE</string>
++    <string name="app_name">DUNE DTS PCM MOD</string>
+     <string name="splash_check_internet_error_dialog_button">ПОВТОРИТЬ</string>
+     <string name="splash_check_internet_error_dialog_message">Проверьте подключение к Интернет и нажмите ПОВТОРИТЬ.</string>
+     <string name="splash_check_internet_error_dialog_title">Нет подключения к Интернет</string>
+--- a/res/values/colors.xml
++++ b/res/values/colors.xml
+@@ -2,6 +2,6 @@
+ <resources>
+     <color name="black">#ff000000</color>
+     <color name="gray">#ffafafaf</color>
+-    <color name="ic_launcher_background">#ff3ddc84</color>
++    <color name="ic_launcher_background">#ff002c45</color>
+     <color name="white">#ffffffff</color>
+ </resources>
+--- a/res/values/strings.xml
++++ b/res/values/strings.xml
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="app_name">DUNE</string>
++    <string name="app_name">DUNE DTS PCM MOD</string>
+     <string name="splash_check_internet_error_dialog_button">RETRY</string>
+     <string name="splash_check_internet_error_dialog_message">Please check Internet connection and press RETRY.</string>
+     <string name="splash_check_internet_error_dialog_title">No Internet connection</string>
+--- a/res/values-fr/strings.xml
++++ b/res/values-fr/strings.xml
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="app_name">DUNE</string>
++    <string name="app_name">DUNE DTS PCM MOD</string>
+     <string name="splash_check_internet_error_dialog_button">RÉESSAYER</string>
+     <string name="splash_check_internet_error_dialog_message">Veuillez vérifier la connexion Internet et appuyer sur « RÉESSAYER ».</string>
+     <string name="splash_check_internet_error_dialog_title">Pas de connexion Internet</string>
+--- a/res/values-hu/strings.xml
++++ b/res/values-hu/strings.xml
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="app_name">DUNE</string>
++    <string name="app_name">DUNE DTS PCM MOD</string>
+     <string name="splash_check_internet_error_dialog_button">ÚJRA</string>
+     <string name="splash_check_internet_error_dialog_message">Ellenőrizd az internetkapcsolatot, majd nyomd meg az ÚJRA gombot!</string>
+     <string name="splash_check_internet_error_dialog_title">Nincs internetkapcsolat</string>
+--- a/res/values-zh/strings.xml
++++ b/res/values-zh/strings.xml
+@@ -1,6 +1,6 @@
+ <?xml version="1.0" encoding="utf-8"?>
+ <resources>
+-    <string name="app_name">DUNE</string>
++    <string name="app_name">DUNE DTS PCM MOD</string>
+     <string name="splash_check_internet_error_dialog_button">重试</string>
+     <string name="splash_check_internet_error_dialog_message">请检查INTERNET连接，按重试键</string>
+     <string name="splash_check_internet_error_dialog_title">无网络连接</string>
